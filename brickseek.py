@@ -23,8 +23,11 @@ def Checker(upc,zipcode,stores,output=None):
             ret_dict[elem]= store_inventory(upc,zipcode,url)
         except:
             ret_dict[elem] = "No Availible Products"
-    with open(output+'.txt','w') as json_file:
-        json.dump(ret_dict,json_file,indent=4)
+    if output is None:
+        print(json.dumps(ret_dict,indent=4))
+    else:
+        with open(output+'.txt','w') as json_file:
+            json.dump(ret_dict,json_file,indent=4)
 
 def store_inventory(upc,zipcode,url):
     options1 = webdriver.ChromeOptions()
