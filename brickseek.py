@@ -3,6 +3,7 @@ from selenium import webdriver
 import time
 import json
 from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.utils import ChromeType
 from selenium.webdriver.common.keys import Keys
 import argparse
 def Checker(upc,zipcode,stores,output=None):
@@ -22,7 +23,7 @@ def Checker(upc,zipcode,stores,output=None):
 def store_inventory(upc,zipcode,url):
     options1 = webdriver.ChromeOptions()
     options1.add_argument('headless')
-    driver = webdriver.Chrome(ChromeDriverManager().install(),options=options1)
+    driver = webdriver.Chrome(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install(),options=options1)
     driver.get(url)
     #Selects UPC option
     typeA = driver.find_element_by_xpath('//*[@id="main"]/div/form/div/div[1]/div/div/label[2]')
